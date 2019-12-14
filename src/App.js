@@ -30,9 +30,10 @@ class App extends Component {
         return (
             <div className='App'>
                 <Header />
-                <NavBar {...topics} />
+                { topics.length !== 0 && <NavBar topics={topics} /> }
                 <Router>
                     <ArticlesList path='/' />
+                    {topics.map(({ slug }) => <ArticlesList key={slug} path={slug} topic={slug}/>)}
                 </Router>
             </div>
         );

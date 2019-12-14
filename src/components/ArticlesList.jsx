@@ -11,14 +11,21 @@ class ArticlesList extends Component {
     };
 
     componentDidMount() {
-        this.getArticles();
+        if (this.props.topic === undefined) this.getArticles();
+        else this.getArticlesByTopic(this.props.topic);
     };
 
     getArticles = () => {
         axios.get('/articles').then(res => {
             this.setState({ articles: res.data.articles, isLoading: false });
-        })
-    }
+        });
+    };
+
+    getArticlesByTopic = topic => {
+        axios.get(`/articles?topic=${topic}`).then(res => {
+            this.setState({ articles: res.data.articles, isLoading: false });
+        });
+    };
 
     render() {
         const { isLoading, articles } = this.state;
@@ -30,7 +37,7 @@ class ArticlesList extends Component {
                 {articles.map((article, i) => <ArticleCard key={i} {...article} />)}
             </div>
         );
-    }
-}
+    };
+};
 
 export default ArticlesList;
