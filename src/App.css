@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+nav {
+  margin: 20px;
+}
+
+article {
+  border: 1.5px solid darkgray;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
