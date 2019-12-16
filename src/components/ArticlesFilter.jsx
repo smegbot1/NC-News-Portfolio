@@ -14,17 +14,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AuthorFilter = () => {
-    const classes = useStyles();
+
+const ArticlesFilter = props => {
+  const classes = useStyles();
+  
+  const handleClick = event => {
+    props.handleOrder(event.target.textContent);
+  };
     
     return (
         <div className={classes.root}>
         <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-          <Button>Ascending</Button>
-          <Button>Descending</Button>
+          <Button onClick={handleClick}>asc</Button>
+          <Button onClick={handleClick}>desc</Button>
         </ButtonGroup>
       </div>
     );
 };
 
-export default AuthorFilter;
+export default ArticlesFilter;

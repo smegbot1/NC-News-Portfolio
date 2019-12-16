@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 
 import Loader from './Loader';
 import ArticleCard from './ArticleCard';
-import AuthorFilter from './AuthorFilter';
+import ArticlesFilter from './ArticlesFilter';
 import { fetchArticlesByTopic } from '../utils/api';
 
 class ArticlesList extends Component {
     state = {
         articles: [],
+        order: '',
         isLoading: false,
         err: ''
     };
@@ -16,14 +17,19 @@ class ArticlesList extends Component {
         this.getArticlesByTopic();
     };
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         if (this.props.topic !== prevProps.topic) {
-            this.setState({ isLoading: false }, () => this.getArticlesByTopic());
+            this.setState({ ...this.state, isLoading: false }, () => this.getArticlesByTopic());
+        };
+
+        if (this.state.order !== prevState.order) {
+            this.setState({ ...this.state, isLoading: false }, () => this.getArticlesByTopic());
         };
     };
 
     getArticlesByTopic = () => {
-        const { topic, order } = this.props;
+        const { topic } = this.props;
+        const { order } = this.state;
 
         fetchArticlesByTopic(topic, order)
             .then(res => {
@@ -33,6 +39,14 @@ class ArticlesList extends Component {
                 this.setState({ err: res.msg, isLoading: false });
             });
     };
+
+    handleOrder = order => {
+        this.setState({ ...this.state, order });
+    };
+
+    // handleSortBy = sort_by => {
+    //     this.setState({ ...this})
+    // }
 
     render() {
         const { isLoading, articles } = this.state;
@@ -49,8 +63,8 @@ class ArticlesList extends Component {
                     2. by Author (desc)
                 possibly need search by author option
                 */}
-                <p>Sort articles by author: </p>
-                <AuthorFilter />
+                <p>Sort by author:</p>
+                <ArticlesFilter handleOrder={ this.handleOrder }/>
                 {articles.map((article, i) => <ArticleCard key={i} {...article} />)}
             </div>
         );
