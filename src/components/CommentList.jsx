@@ -3,6 +3,7 @@ import CommentCard from './CommentCard';
 import { fetchCommentsByArticleId } from '../utils/api';
 import Loader from './Loader';
 import ErrDisplayer from './ErrDisplayer';
+import NewCommentForm from './NewCommentForm';
 
 class CommentList extends Component {
     state = {
@@ -18,7 +19,7 @@ class CommentList extends Component {
     getComments = async () => {
         try {
             const { data: { comments } } = await fetchCommentsByArticleId(this.props.article_id);
-            this.setState({ comments, isLoading: false });
+            this.setState({ ...this.state, comments, isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg, isLoading: false });
         };
@@ -33,7 +34,7 @@ class CommentList extends Component {
 
         return (
             <section>
-                {/* isVisible && postCommentForm */}
+                {/* <NewCommentForm /> */}
                 {/* <CommentCard ........ user={this.props.user} />
                     --------> (author === props.user) && deleteCommentButton */}
                 {comments.map(comment => <CommentCard key={comment.comment_id} {...comment} username={this.props.username} getComments={this.getComments} />)}

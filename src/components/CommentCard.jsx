@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { removeComment } from '../utils/api';
+import Loader from './Loader';
+import ErrDisplayer from './ErrDisplayer';
 
 export default class CommentCard extends Component {
     state = {
-        isLoading: false
+        isLoading: false,
+        err: ''
     };
 
     handleDelete = async () => {
@@ -15,13 +18,17 @@ export default class CommentCard extends Component {
             await removeComment(this.props.comment_id);
             this.props.getComments();
         } catch (err) {
-            this.setState({ isLoading: false });
-            alert('CANNOT REMOVE THIS COMMENT --- CommentCard.jsx Line 23')
+            this.setState({ err: err.msg, isLoading: false });
         };
     };
 
     render() {
         const { author, body, created_at, votes, username } = this.props;
+        const { isLoading, err } = this.state;
+
+        if (isLoading) return <Loader />
+
+        if (err) return <ErrDisplayer err={err} />
 
         return (
             <div className='commentCard'>
