@@ -47,6 +47,8 @@ const ArticlesFilter = props => {
           >
             <MenuItem value={'title'}>Title</MenuItem>
             <MenuItem value={'author'}>Author</MenuItem>
+            <MenuItem value={'votes'}>Votes</MenuItem>
+            <MenuItem value={'comment_count'}>Comments</MenuItem>
             <MenuItem value={'created_at'}>Date Published</MenuItem>
           </Select>
         </FormControl>
