@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 const ArticlesFilter = props => {
   const classes = useStyles();
-  const [sort_by, setSortBy] = React.useState('');
+  const [sort_by, setSortBy] = React.useState('created_at');
   
   const handleClick = event => {
     props.handleOrder(event.target.textContent);

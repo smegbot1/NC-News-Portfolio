@@ -68,7 +68,6 @@ class ArticlesList extends Component {
                     2. by Author (desc)
                 possibly need search by author option
                 */}
-                <p>Sort by author:</p>
                 <ArticlesFilter handleOrder={ this.handleOrder } handleSortBy={this.handleSortBy}/>
                 {articles.map((article, i) => <ArticleCard key={i} {...article} />)}
             </div>
