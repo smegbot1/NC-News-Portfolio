@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+
 import CommentCard from './CommentCard';
 import { fetchCommentsByArticleId } from '../utils/api';
 import Loader from './Loader';
 import ErrDisplayer from './ErrDisplayer';
 import NewCommentForm from './NewCommentForm';
+import ViewToggler from './ViewToggler';
 
 class CommentList extends Component {
     state = {
@@ -34,7 +36,9 @@ class CommentList extends Component {
 
         return (
             <section>
-                {/* <NewCommentForm /> */}
+                <ViewToggler text2="Add Comment" text1="Hide">
+                    <NewCommentForm />
+                </ViewToggler>
                 {/* <CommentCard ........ user={this.props.user} />
                     --------> (author === props.user) && deleteCommentButton */}
                 {comments.map(comment => <CommentCard key={comment.comment_id} {...comment} username={this.props.username} getComments={this.getComments} />)}

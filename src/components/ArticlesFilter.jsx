@@ -8,55 +8,55 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    '& > *': {
-      margin: theme.spacing(1),
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        '& > *': {
+            margin: theme.spacing(1),
+        },
     },
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  }
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    }
 }));
 
 const ArticlesFilter = props => {
-  const classes = useStyles();
-  const [sort_by, setSortBy] = React.useState('created_at');
-  
-  const handleClick = event => {
-    props.handleOrder(event.target.textContent);
-  };
+    const classes = useStyles();
+    const [sort_by, setSortBy] = React.useState('created_at');
 
-  const handleChange = event => {
-    setSortBy(event.target.value);
-    props.handleSortBy(event.target.value);
-  };
-    
+    const handleClick = event => {
+        props.handleOrder(event.target.textContent);
+    };
+
+    const handleChange = event => {
+        setSortBy(event.target.value);
+        props.handleSortBy(event.target.value);
+    };
+
     return (
-      <div className={classes.root}>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="sort_by">Sort By</InputLabel>
-          <Select
-            labelId="sort_by_select"
-            id="sort_by_select"
-            value={sort_by}
-            onChange={handleChange}
-          >
-            <MenuItem value={'title'}>Title</MenuItem>
-            <MenuItem value={'author'}>Author</MenuItem>
-            <MenuItem value={'votes'}>Votes</MenuItem>
-            <MenuItem value={'comment_count'}>Comments</MenuItem>
-            <MenuItem value={'created_at'}>Date Published</MenuItem>
-          </Select>
-        </FormControl>
-        <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-          <Button onClick={handleClick}>asc</Button>
-          <Button onClick={handleClick}>desc</Button>
-        </ButtonGroup>
-      </div>
+        <div className={classes.root}>
+            <FormControl className={classes.formControl}>
+                <InputLabel id="sort_by">Sort By</InputLabel>
+                <Select
+                    labelId="sort_by_select"
+                    id="sort_by_select"
+                    value={sort_by}
+                    onChange={handleChange}
+                >
+                    <MenuItem value={'title'}>Title</MenuItem>
+                    <MenuItem value={'author'}>Author</MenuItem>
+                    <MenuItem value={'votes'}>Votes</MenuItem>
+                    <MenuItem value={'comment_count'}>Comments</MenuItem>
+                    <MenuItem value={'created_at'}>Date Published</MenuItem>
+                </Select>
+            </FormControl>
+            <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+                <Button onClick={handleClick}>asc</Button>
+                <Button onClick={handleClick}>desc</Button>
+            </ButtonGroup>
+        </div>
     );
 };
 

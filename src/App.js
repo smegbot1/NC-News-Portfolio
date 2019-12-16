@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
+import Snackbar from '@material-ui/core/Snackbar';
+import axios from 'axios';
 
 import './App.css';
 
@@ -11,12 +13,21 @@ import Loader from './components/Loader';
 import ErrDisplayer from './components/ErrDisplayer';
 import SingleArticle from './components/SingleArticle';
 
+axios.defaults.baseURL = 'https://nc-news-dc.herokuapp.com/api'; 
+
 class App extends Component {
     state = {
         username: 'jessjelly',
         topics: [],
         isLoading: true,
+        snackBarOpen: false,
         err: ''
+    };
+    
+    handleClose = (_, reason) => {
+        if (reason === 'clickaway') return;
+    
+        this.setState({ snackBarOpen: false });
     };
 
     getTopics = async () => {
@@ -30,14 +41,23 @@ class App extends Component {
 
     componentDidMount() {
         this.getTopics();
+
+        axios.interceptors.response.use(null, (err) => {
+            console.error(err);
+            if (err.response && err.response.data) {
+                this.setState({ snackBarOpen: true, err: err.response.data.msg || 'Unexpected error occured' });
+            } else {
+                this.setState({ snackBarOpen: true, err: 'Unexpected error occured' });
+            }
+
+            return Promise.reject(err);
+        });
     };
 
     render() {
-        const { username, isLoading, topics, err } = this.state;
+        const { username, isLoading, topics } = this.state;
 
         if (isLoading) return <Loader />
-
-        if (err) return <ErrDisplayer />
 
         return (
             <div className='App'>
@@ -49,6 +69,13 @@ class App extends Component {
                     <SingleArticle path='/articles/:article_id' username={username} />
                     <ErrDisplayer default />
                 </Router>
+                <Snackbar
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                    open={this.state.snackBarOpen}
+                    autoHideDuration={5000}
+                    onClose={this.handleClose}
+                    message={this.state.err}
+                />
             </div>
         );
     };

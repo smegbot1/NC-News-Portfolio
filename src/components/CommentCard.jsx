@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
+
 import { removeComment } from '../utils/api';
 import Loader from './Loader';
 import ErrDisplayer from './ErrDisplayer';
@@ -12,7 +13,7 @@ export default class CommentCard extends Component {
 
     handleDelete = async () => {
         if (this.state.isLoading) return;
-        this.setState({ isLoading: true })
+        this.setState({ isLoading: true });
 
         try {
             await removeComment(this.props.comment_id);
@@ -33,7 +34,7 @@ export default class CommentCard extends Component {
         return (
             <div className='commentCard'>
                 <div>
-                    {(username === author) && <Button className='delButton' onClick={this.handleDelete} variant='outlined' size='small' color="secondary">Delete</Button>}
+                    {(username === author) && <Button type="button" onClick={this.handleDelete} disabled={this.state.isLoading} variant='outlined' size='small' color="secondary">Delete</Button>}
                 </div>
                 <h5>{author}</h5>
                 <p>{body}</p>

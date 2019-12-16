@@ -72,6 +72,8 @@ You should implement the following functionality in your website. Check the lect
 
 **Personal Ideas**
 - render button to refresh comments to show users first.
+- use material ui snackbar for errors and post/delete confirmations.
+-use moment js to format timestamps.
 
 ## Deployment
 
