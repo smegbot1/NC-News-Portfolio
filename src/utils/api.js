@@ -23,3 +23,7 @@ export const fetchCommentsByArticleId = async article_id => {
     const { data } = await request.get(`/articles/${article_id}/comments`);
     return data;
 };
+
+export const removeComment = async comment_id => {
+    await request.delete(`/comments/${comment_id}`);
+};

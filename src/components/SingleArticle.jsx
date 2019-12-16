@@ -39,7 +39,7 @@ class SingleArticle extends Component {
                 <p>Votes: {votes}</p>
                 <p>{comment_count} people have commented on this article.</p>
                 <hr/>
-                <CommentList article_id={this.props.article_id} />
+                <CommentList article_id={this.props.article_id} username={this.props.username} />
             </main>
         );
     }

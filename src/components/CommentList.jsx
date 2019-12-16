@@ -36,7 +36,7 @@ class CommentList extends Component {
                 {/* isVisible && postCommentForm */}
                 {/* <CommentCard ........ user={this.props.user} />
                     --------> (author === props.user) && deleteCommentButton */}
-                {comments.map(comment => <CommentCard key={comment.comment_id} {...comment} />)}
+                {comments.map(comment => <CommentCard key={comment.comment_id} {...comment} username={this.props.username} getComments={this.getComments} />)}
             </section>
         );
     }
