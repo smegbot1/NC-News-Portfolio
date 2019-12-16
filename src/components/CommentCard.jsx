@@ -1,39 +1,37 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { removeComment } from '../utils/api';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+export default class CommentCard extends Component {
+    state = {
+        isLoading: false
+    };
 
+    handleDelete = async () => {
+        if (this.state.isLoading) return;
+        this.setState({ isLoading: true })
 
-const CommentCard = ({ comment_id, author, body, created_at, votes, username, getComments }) => {
-    const classes = useStyles();
-
-    const handleDelete = async () => {
         try {
-            await removeComment(comment_id);
-            getComments();
+            await removeComment(this.props.comment_id);
+            this.props.getComments();
         } catch (err) {
-            Window.alert('CANNOT REMOVE THIS COMMENT --- CommentCard.jsx Line 23')
+            this.setState({ isLoading: false });
+            alert('CANNOT REMOVE THIS COMMENT --- CommentCard.jsx Line 23')
         };
     };
 
-    return (
-        <div className='commentCard'>
-            <div className={classes.root}>
-                {(username === author) && <Button onClick={handleDelete} variant='outlined' size='small' color="secondary">Delete</Button>}
-            </div>
-            <h5>{author}</h5>
-            <p>{body}</p>
-            <p><em>made on {created_at}</em> ---- {votes} Votes</p>
-        </div>
-    );
-};
+    render() {
+        const { author, body, created_at, votes, username } = this.props;
 
-export default CommentCard;
+        return (
+            <div className='commentCard'>
+                <div>
+                    {(username === author) && <Button className='delButton' onClick={this.handleDelete} variant='outlined' size='small' color="secondary">Delete</Button>}
+                </div>
+                <h5>{author}</h5>
+                <p>{body}</p>
+                <p><em>made on {created_at}</em> ---- {votes} Votes</p>
+            </div>
+        );
+    };
+};

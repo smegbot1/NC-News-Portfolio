@@ -17,7 +17,7 @@ class CommentList extends Component {
 
     getComments = async () => {
         try {
-            const { comments } = await fetchCommentsByArticleId(this.props.article_id);
+            const { data: { comments } } = await fetchCommentsByArticleId(this.props.article_id);
             this.setState({ comments, isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg, isLoading: false });

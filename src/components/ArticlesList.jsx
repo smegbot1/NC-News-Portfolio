@@ -38,8 +38,8 @@ class ArticlesList extends Component {
         const { order, sort_by } = this.state;
 
         try {
-            const { articles } = await fetchArticlesByTopic(topic, order, sort_by);
-            this.setState({ articles, isLoading: false });
+            const { data: { articles } } = await fetchArticlesByTopic(topic, order, sort_by);
+            this.setState({ ...this.state, articles, isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg, isLoading: false });            
         };

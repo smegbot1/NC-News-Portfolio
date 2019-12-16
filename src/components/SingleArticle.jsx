@@ -17,7 +17,7 @@ class SingleArticle extends Component {
 
     getArticle = async () => {
         try {
-            const { article } = await fetchSingleArticle(this.props.article_id);
+            const { data: { article } } = await fetchSingleArticle(this.props.article_id);
             this.setState({ article , isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg, isLoading: false });

@@ -2,28 +2,20 @@ const axios = require('axios');
 
 const request = axios.create({ baseURL: 'https://nc-news-dc.herokuapp.com/api' });
 
-export const fetchTopics = async () => {
-    const { data } = await request.get('/topics');
-    return data;
-};
+export const fetchTopics = () => request.get('/topics');
 
-export const fetchArticlesByTopic = async (topic, order, sort_by) => {
-    const { data } = await request.get('/articles', {
+export const fetchArticlesByTopic = (topic, order, sort_by) => {
+    return request.get('/articles', {
         params: { topic, sort_by, order }
     });
-    return data;
 };
 
-export const fetchSingleArticle = async article_id => {
-    const { data } = await request.get(`/articles/${article_id}`);
-    return data;
-};
+export const fetchSingleArticle = async article_id => request.get(`/articles/${article_id}`);
 
-export const fetchCommentsByArticleId = async article_id => {
-    const { data } = await request.get(`/articles/${article_id}/comments`);
-    return data;
-};
+export const fetchCommentsByArticleId = article_id => request.get(`/articles/${article_id}/comments`);
 
-export const removeComment = async comment_id => {
-    await request.delete(`/comments/${comment_id}`);
+export const removeComment = comment_id => request.delete(`/comments/${comment_id}`);
+
+export const addComment = (article_id, body) => {
+    return request.post(`/articles/${article_id}/comments`, { body });
 };

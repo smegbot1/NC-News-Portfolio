@@ -42,7 +42,7 @@ You should implement the following functionality in your website. Check the lect
    - comment_count <-- Complete
    - votes <-- Complete
 6. post a new comment to an existing article (as a default logged in user. e.g. 'jessjelly').
-7. delete my own comments (as a default logged in user. e.g. 'jessjelly').
+7. delete my own comments (as a default logged in user. e.g. 'jessjelly').          <------------ Complete
 8. vote on an article and immediately see the change.
 9. vote on a comment and immediately see the change.
 
@@ -69,6 +69,9 @@ You should implement the following functionality in your website. Check the lect
 20. view a list of all articles written by a specific user.
 21. post a new article to an existing topic.
 22. delete my own articles.
+
+**Personal Ideas**
+- render button to refresh comments to show users first.
 
 ## Deployment
 

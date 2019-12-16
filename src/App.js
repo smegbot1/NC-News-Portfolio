@@ -13,20 +13,19 @@ import SingleArticle from './components/SingleArticle';
 
 class App extends Component {
     state = {
-        username: 'weegembump',
+        username: 'jessjelly',
         topics: [],
         isLoading: true,
         err: ''
     };
 
-    getTopics = () => {
-        fetchTopics()
-            .then(res => {
-                this.setState({ topics: res.topics, isLoading: false })
-            })
-            .catch(res => {  
-                this.setState({ err: res.msg, isLoading: false })
-            });
+    getTopics = async () => {
+        try {
+            const { data: { topics } } = await fetchTopics();
+            this.setState({ ...this.state, topics, isLoading: false });
+        } catch (err) {
+            this.setState({ err: err.msg, isLoading: false });
+        };
     };
 
     componentDidMount() {
