@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import Loader from './Loader';
 import ArticleCard from './ArticleCard';
+import AuthorFilter from './AuthorFilter';
+import { fetchArticlesByTopic } from '../utils/api';
 
 class ArticlesList extends Component {
     state = {
         articles: [],
-        isLoading: false
+        isLoading: false,
+        err: ''
     };
 
     componentDidMount() {
@@ -17,24 +19,27 @@ class ArticlesList extends Component {
     componentDidUpdate(prevProps) {
         if (this.props.topic !== prevProps.topic) {
             this.setState({ isLoading: false }, () => this.getArticlesByTopic());
-        }
-    }
-
+        };
+    };
 
     getArticlesByTopic = () => {
-        if (this.state.isLoading) return;
+        const { topic, order } = this.props;
 
-        axios.get('/articles', {
-            params: { topic: this.props.topic }
-        }).then(res => {
-            this.setState({ articles: res.data.articles, isLoading: false });
-        });
+        fetchArticlesByTopic(topic, order)
+            .then(res => {
+                this.setState({ articles: res.articles, isLoading: false });
+            })
+            .catch(res => {
+                this.setState({ err: res.msg, isLoading: false });
+            });
     };
 
     render() {
         const { isLoading, articles } = this.state;
 
         if (isLoading) return <Loader />
+
+        // if (err) return <ErrDisplayer />
 
         return (
             <div>
@@ -44,6 +49,8 @@ class ArticlesList extends Component {
                     2. by Author (desc)
                 possibly need search by author option
                 */}
+                <p>Sort articles by author: </p>
+                <AuthorFilter />
                 {articles.map((article, i) => <ArticleCard key={i} {...article} />)}
             </div>
         );

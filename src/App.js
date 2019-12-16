@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
-import axios from 'axios';
 
 import './App.css';
 
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import ArticlesList from './components/ArticlesList';
-
-axios.defaults.baseURL = 'https://nc-news-dc.herokuapp.com/api';
+import { fetchTopics } from './utils/api';
+import Loader from './components/Loader';
 
 class App extends Component {
     state = {
-        topics: []
+        topics: [],
+        isLoading: true,
+        err: ''
     };
 
     getTopics = () => {
-        axios.get('/topics').then(res => {
-            this.setState({ topics: res.data.topics });
-        });
+        fetchTopics()
+            .then(res => {
+                this.setState({ topics: res.topics, isLoading: false })
+            })
+            .catch(res => {  
+                this.setState({ err: res.msg, isLoading: false })
+            });
     };
 
     componentDidMount() {
@@ -26,7 +31,12 @@ class App extends Component {
     };
 
     render() {
-        const { topics } = this.state;
+        const { isLoading, topics } = this.state;
+
+        if (isLoading) return <Loader />
+
+        // if (err) return <ErrDisplayer />
+
         return (
             <div className='App'>
                 <Header />
@@ -37,7 +47,7 @@ class App extends Component {
                 </Router>
             </div>
         );
-    }
-}
+    };
+};
 
 export default App;
