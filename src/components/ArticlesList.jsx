@@ -58,7 +58,7 @@ class ArticlesList extends Component {
 
         if (isLoading) return <Loader />
 
-        if (err) return <ErrDisplayer />
+        if (err) return <ErrDisplayer err={err}/>
 
         return (
             <div>

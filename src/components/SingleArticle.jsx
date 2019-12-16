@@ -1,30 +1,42 @@
 import React, { Component } from 'react';
-import { fetchSingleArticle } from '../utils/api';
+import { fetchSingleArticle, fetchCommentsByArticleId } from '../utils/api';
 import Loader from './Loader';
 import ErrDisplayer from './ErrDisplayer';
+import CommentCard from './CommentCard';
 
 class SingleArticle extends Component {
     state = {
         article: {},
+        comments: [],
         isLoading: true,
         err: ''
     };
 
     componentDidMount() {
-        this.getArticle()
+        this.getArticle();
+        this.getComments();
     };
 
     getArticle = async () => {
         try {
-            const { article } = await fetchSingleArticle(this.props.article_id)
+            const { article } = await fetchSingleArticle(this.props.article_id);
             this.setState({ article , isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg, isLoading: false });
         };
     };
 
+    getComments = async () => {
+        try {
+            const { comments } = await fetchCommentsByArticleId(this.props.article_id);
+            this.setState({ ...this.state, comments, isLoading: false });
+        } catch (err) {
+            this.setState({ err: err.msg, isLoading: false });
+        };
+    };
+
     render() {
-        const { article: { topic, title, author, created_at, body, votes, comment_count }, isLoading, err } = this.state;
+        const { article: { topic, title, author, created_at, body, votes, comment_count }, comments, isLoading, err } = this.state;
 
         if (isLoading) return <Loader />
 
@@ -37,6 +49,8 @@ class SingleArticle extends Component {
                 <p>{body}</p>
                 <p>Votes: {votes}</p>
                 <p>{comment_count} people have commented on this article.</p>
+                <hr/>
+                {comments.map(comment => <CommentCard key={comment.comment_id} {...comment} />)}
             </main>
         );
     }

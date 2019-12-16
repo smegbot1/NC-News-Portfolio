@@ -35,8 +35,8 @@ You should implement the following functionality in your website. Check the lect
 
 1. view a list of all articles                                                      <------------ Complete
 2. view a page for each topic with a list of related articles.                      <------------ Complete
-3. view an individual article.
-4. view an individual article's comments.
+3. view an individual article.                                                      <------------ Complete
+4. view an individual article's comments.                                           <------------ Complete
 5. sort articles by:
    - date created
    - comment_count
