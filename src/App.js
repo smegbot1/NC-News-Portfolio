@@ -13,6 +13,7 @@ import SingleArticle from './components/SingleArticle';
 
 class App extends Component {
     state = {
+        username: 'weegembump',
         topics: [],
         isLoading: true,
         err: ''
@@ -33,7 +34,7 @@ class App extends Component {
     };
 
     render() {
-        const { isLoading, topics, err } = this.state;
+        const { username, isLoading, topics, err } = this.state;
 
         if (isLoading) return <Loader />
 
@@ -41,7 +42,7 @@ class App extends Component {
 
         return (
             <div className='App'>
-                <Header />
+                <Header username={username} />
                 { topics.length !== 0 && <NavBar topics={topics} /> }
                 <Router>
                     <ArticlesList path='/' />
