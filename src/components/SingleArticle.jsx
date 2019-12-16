@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import { fetchSingleArticle, fetchCommentsByArticleId } from '../utils/api';
+import { fetchSingleArticle } from '../utils/api';
 import Loader from './Loader';
 import ErrDisplayer from './ErrDisplayer';
-import CommentCard from './CommentCard';
+import CommentList from './CommentList';
 
 class SingleArticle extends Component {
     state = {
         article: {},
-        comments: [],
         isLoading: true,
         err: ''
     };
 
     componentDidMount() {
         this.getArticle();
-        this.getComments();
     };
 
     getArticle = async () => {
@@ -26,17 +24,8 @@ class SingleArticle extends Component {
         };
     };
 
-    getComments = async () => {
-        try {
-            const { comments } = await fetchCommentsByArticleId(this.props.article_id);
-            this.setState({ ...this.state, comments, isLoading: false });
-        } catch (err) {
-            this.setState({ err: err.msg, isLoading: false });
-        };
-    };
-
     render() {
-        const { article: { topic, title, author, created_at, body, votes, comment_count }, comments, isLoading, err } = this.state;
+        const { article: { topic, title, author, created_at, body, votes, comment_count }, isLoading, err } = this.state;
 
         if (isLoading) return <Loader />
 
@@ -50,10 +39,7 @@ class SingleArticle extends Component {
                 <p>Votes: {votes}</p>
                 <p>{comment_count} people have commented on this article.</p>
                 <hr/>
-                {/* isVisible && postCommentForm */}
-                {/* <CommentCard ........ user={this.props.user} />
-                        --------> (author === props.user) && deleteCommentButton */}
-                {comments.map(comment => <CommentCard key={comment.comment_id} {...comment} />)}
+                <CommentList article_id={this.props.article_id} />
             </main>
         );
     }
