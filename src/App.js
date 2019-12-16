@@ -8,6 +8,8 @@ import NavBar from './components/NavBar';
 import ArticlesList from './components/ArticlesList';
 import { fetchTopics } from './utils/api';
 import Loader from './components/Loader';
+import ErrDisplayer from './components/ErrDisplayer';
+import SingleArticle from './components/SingleArticle';
 
 class App extends Component {
     state = {
@@ -31,11 +33,11 @@ class App extends Component {
     };
 
     render() {
-        const { isLoading, topics } = this.state;
+        const { isLoading, topics, err } = this.state;
 
         if (isLoading) return <Loader />
 
-        // if (err) return <ErrDisplayer />
+        if (err) return <ErrDisplayer />
 
         return (
             <div className='App'>
@@ -44,6 +46,8 @@ class App extends Component {
                 <Router>
                     <ArticlesList path='/' />
                     <ArticlesList path=':topic' />
+                    <SingleArticle path='/articles/:article_id' />
+                    <ErrDisplayer default />
                 </Router>
             </div>
         );

@@ -13,3 +13,8 @@ export const fetchArticlesByTopic = async (topic, order, sort_by) => {
     });
     return data;
 };
+
+export const fetchSingleArticle = async article_id => {
+    const { data } = await request.get(`/articles/${article_id}`);
+    return data;
+};

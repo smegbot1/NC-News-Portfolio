@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Loader from './Loader';
 import ArticleCard from './ArticleCard';
 import ArticlesFilter from './ArticlesFilter';
+import ErrDisplayer from './ErrDisplayer';
 import { fetchArticlesByTopic } from '../utils/api';
 
 class ArticlesList extends Component {
@@ -32,17 +33,16 @@ class ArticlesList extends Component {
         };
     };
 
-    getArticlesByTopic = () => {
+    getArticlesByTopic = async () => {
         const { topic } = this.props;
         const { order, sort_by } = this.state;
 
-        fetchArticlesByTopic(topic, order, sort_by)
-            .then(res => {
-                this.setState({ articles: res.articles, isLoading: false });
-            })
-            .catch(res => {
-                this.setState({ err: res.msg, isLoading: false });
-            });
+        try {
+            const { articles } = await fetchArticlesByTopic(topic, order, sort_by);
+            this.setState({ articles, isLoading: false });
+        } catch (err) {
+            this.setState({ err: err.msg, isLoading: false });            
+        };
     };
 
     handleOrder = order => {
@@ -54,11 +54,11 @@ class ArticlesList extends Component {
     };
 
     render() {
-        const { isLoading, articles } = this.state;
+        const { isLoading, articles, err } = this.state;
 
         if (isLoading) return <Loader />
 
-        // if (err) return <ErrDisplayer />
+        if (err) return <ErrDisplayer />
 
         return (
             <div>
