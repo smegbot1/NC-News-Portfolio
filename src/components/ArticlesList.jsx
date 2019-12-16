@@ -9,6 +9,7 @@ class ArticlesList extends Component {
     state = {
         articles: [],
         order: '',
+        sort_by: '',
         isLoading: false,
         err: ''
     };
@@ -25,13 +26,17 @@ class ArticlesList extends Component {
         if (this.state.order !== prevState.order) {
             this.setState({ ...this.state, isLoading: false }, () => this.getArticlesByTopic());
         };
+
+        if (this.state.sort_by !== prevState.sort_by) {
+            this.setState({ ...this.state, isLoading: false }, () => this.getArticlesByTopic());
+        };
     };
 
     getArticlesByTopic = () => {
         const { topic } = this.props;
-        const { order } = this.state;
+        const { order, sort_by } = this.state;
 
-        fetchArticlesByTopic(topic, order)
+        fetchArticlesByTopic(topic, order, sort_by)
             .then(res => {
                 this.setState({ articles: res.articles, isLoading: false });
             })
@@ -44,9 +49,9 @@ class ArticlesList extends Component {
         this.setState({ ...this.state, order });
     };
 
-    // handleSortBy = sort_by => {
-    //     this.setState({ ...this})
-    // }
+    handleSortBy = sort_by => {
+        this.setState({ ...this.state, sort_by });
+    };
 
     render() {
         const { isLoading, articles } = this.state;
@@ -64,7 +69,7 @@ class ArticlesList extends Component {
                 possibly need search by author option
                 */}
                 <p>Sort by author:</p>
-                <ArticlesFilter handleOrder={ this.handleOrder }/>
+                <ArticlesFilter handleOrder={ this.handleOrder } handleSortBy={this.handleSortBy}/>
                 {articles.map((article, i) => <ArticleCard key={i} {...article} />)}
             </div>
         );
