@@ -47,7 +47,7 @@ class App extends Component {
                 <Router>
                     <ArticlesList path='/' />
                     <ArticlesList path=':topic' />
-                    <SingleArticle path='/articles/:article_id' />
+                    <SingleArticle path='/articles/:article_id' username={username} />
                     <ErrDisplayer default />
                 </Router>
             </div>

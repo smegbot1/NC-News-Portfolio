@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CommentCard = ({ author, body, comment_id, created_at, votes }) => {
+const CommentCard = ({ author, body, created_at, votes }) => {
     return (
         <div className='commentCard'>
             <h5>{author}</h5>

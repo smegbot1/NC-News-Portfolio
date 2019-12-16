@@ -50,6 +50,9 @@ class SingleArticle extends Component {
                 <p>Votes: {votes}</p>
                 <p>{comment_count} people have commented on this article.</p>
                 <hr/>
+                {/* isVisible && postCommentForm */}
+                {/* <CommentCard ........ user={this.props.user} />
+                        --------> (author === props.user) && deleteCommentButton */}
                 {comments.map(comment => <CommentCard key={comment.comment_id} {...comment} />)}
             </main>
         );

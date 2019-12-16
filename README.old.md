@@ -37,10 +37,10 @@ You should implement the following functionality in your website. Check the lect
 2. view a page for each topic with a list of related articles.                      <------------ Complete
 3. view an individual article.                                                      <------------ Complete
 4. view an individual article's comments.                                           <------------ Complete
-5. sort articles by:
-   - date created
-   - comment_count
-   - votes
+5. sort articles by:                                                                <------------ Complete
+   - date created <-- Complete
+   - comment_count <-- Complete
+   - votes <-- Complete
 6. post a new comment to an existing article (as a default logged in user. e.g. 'jessjelly').
 7. delete my own comments (as a default logged in user. e.g. 'jessjelly').
 8. vote on an article and immediately see the change.
