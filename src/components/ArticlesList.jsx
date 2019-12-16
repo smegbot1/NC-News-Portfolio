@@ -62,12 +62,6 @@ class ArticlesList extends Component {
 
         return (
             <div>
-                {/* Sort by author (alphabetically, asc or desc) */}
-                {/* create filter with options:
-                    1. by Author
-                    2. by Author (desc)
-                possibly need search by author option
-                */}
                 <ArticlesFilter handleOrder={ this.handleOrder } handleSortBy={this.handleSortBy}/>
                 {articles.map((article, i) => <ArticleCard key={i} {...article} />)}
             </div>
