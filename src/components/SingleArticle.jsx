@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { fetchSingleArticle } from '../utils/api';
 import Loader from './Loader';
 import ErrDisplayer from './ErrDisplayer';

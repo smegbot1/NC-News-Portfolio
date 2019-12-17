@@ -13,17 +13,16 @@ export default class Voter extends Component {
     };
 
     handleClick = async ({ currentTarget: { value } }) => {
-        this.setState(currentState => ({
-            optimisticVotes: currentState.optimisticVotes + +value
-        }));
-
         try {
-            voteComment(this.props.type, this.props.id, this.state.optimisticVotes)
+            await this.setState(state => ({
+                optimisticVotes: state.optimisticVotes + +value
+            }),
+            () => voteComment(this.props.type, this.props.id, this.state.optimisticVotes));
         } catch (err) {
-            this.setState(currentState => ({
+            this.setState(state => ({
                 err: 'Cannot vote at this time. Try again later.',
-                optimisticVotes: currentState.optimisticVotes - +value
-            }))
+                optimisticVotes: state.optimisticVotes - +value
+            }));
         };
     };
 
@@ -33,11 +32,11 @@ export default class Voter extends Component {
         // if (err) return <ErrDisplayer err={err} />
 
         return <div>
-            <IconButton value={1} onClick={this.handleClick.bind(1)} disabled={optimisticVotes > 0} color="secondary" >
+            <IconButton value={1} onClick={this.handleClick.bind(this)} disabled={optimisticVotes > 0} color="secondary" >
                 <ExpandLessIcon />
             </IconButton>
             <h5>{this.props.votes + optimisticVotes}</h5>
-            <IconButton value={-1} onClick={this.handleClick.bind(-1)} disabled={optimisticVotes < 0} color="primary" >
+            <IconButton value={-1} onClick={this.handleClick.bind(this)} disabled={optimisticVotes < 0} color="primary" >
                 <ExpandMoreIcon name={-1} />
             </IconButton>
         </div>
