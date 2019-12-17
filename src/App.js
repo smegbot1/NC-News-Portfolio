@@ -12,6 +12,7 @@ import Loader from './components/Loader';
 import ErrDisplayer from './components/ErrDisplayer';
 import SingleArticle from './components/SingleArticle';
 import { fetchTopics } from './utils/api';
+import Voter from './components/Voter';
 
 axios.defaults.baseURL = 'https://nc-news-dc.herokuapp.com/api'; 
 
@@ -62,6 +63,7 @@ class App extends Component {
             <div className='App'>
                 <Header username={username} />
                 { topics.length !== 0 && <NavBar topics={topics} /> }
+                <Voter />
                 <Router>
                     <ArticlesList path='/' />
                     <ArticlesList path=':topic' />

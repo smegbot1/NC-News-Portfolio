@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 
 import { removeComment } from '../utils/api';
 import Loader from './Loader';
-import ErrDisplayer from './ErrDisplayer';
 
 export default class CommentCard extends Component {
     state = {
@@ -25,18 +24,16 @@ export default class CommentCard extends Component {
 
     render() {
         const { author, body, created_at, votes, username } = this.props;
-        const { isLoading, err } = this.state;
 
-        if (isLoading) return <Loader />
-
-        if (err) return <ErrDisplayer err={err} />
+        if (this.state.isLoading) return <Loader />
 
         return (
             <div className='commentCard'>
                 {(username === author) && <Button type="button" onClick={this.handleDelete} disabled={this.state.isLoading} variant='outlined' size='small' color="secondary">Delete</Button>}
                 <h5>{author}</h5>
                 <p>{body}</p>
-                <p><em>made on {created_at}</em> ---- {votes} Votes</p>
+                <p><em>made on {created_at}</em></p>
+                <p>{votes} Votes</p>
             </div>
         );
     };
