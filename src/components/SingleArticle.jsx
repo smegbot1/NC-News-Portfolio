@@ -3,8 +3,9 @@ import { fetchSingleArticle } from '../utils/api';
 import Loader from './Loader';
 import ErrDisplayer from './ErrDisplayer';
 import CommentList from './CommentList';
+import Voter from './Voter';
 
-class SingleArticle extends Component {
+export default class SingleArticle extends Component {
     state = {
         article: {},
         isLoading: true,
@@ -25,7 +26,7 @@ class SingleArticle extends Component {
     };
 
     render() {
-        const { article: { topic, title, author, created_at, body, votes, comment_count }, isLoading, err } = this.state;
+        const { article: { article_id, topic, title, author, created_at, body, votes, comment_count }, isLoading, err } = this.state;
 
         if (isLoading) return <Loader />
 
@@ -36,13 +37,11 @@ class SingleArticle extends Component {
                 <h2><strong>{topic} - </strong>{title}</h2>
                 <h4>By <em>{author}</em> on {created_at}</h4>
                 <p>{body}</p>
-                <p>Votes: {votes}</p>
-                <p>{comment_count} people have commented on this article.</p>
+                <Voter votes={votes} type="articles" id={article_id} />
+                <p>{comment_count} Comments</p>
                 <hr/>
                 <CommentList article_id={this.props.article_id} username={this.props.username} />
             </main>
         );
-    }
-}
-
-export default SingleArticle;
+    };
+};
