@@ -41,7 +41,7 @@ You should implement the following functionality in your website. Check the lect
    - date created <-- Complete
    - comment_count <-- Complete
    - votes <-- Complete
-6. post a new comment to an existing article (as a default logged in user. e.g. 'jessjelly').
+6. post a new comment to an existing article (as a default logged in user. e.g. 'jessjelly'). <------------ Complete (need help with error handling, ask Daniil)
 7. delete my own comments (as a default logged in user. e.g. 'jessjelly').          <------------ Complete
 8. vote on an article and immediately see the change.
 9. vote on a comment and immediately see the change.
@@ -73,7 +73,8 @@ You should implement the following functionality in your website. Check the lect
 **Personal Ideas**
 - render button to refresh comments to show users first.
 - use material ui snackbar for errors and post/delete confirmations.
--use moment js to format timestamps.
+- use moment js to format timestamps.
+- link all author occurences to specific user page.
 
 ## Deployment
 

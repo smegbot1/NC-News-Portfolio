@@ -6,7 +6,7 @@ const Header = ({ username }) => {
         <header>
             <p>(User): {username}</p>
             <Link to='/'>
-                <h1>NC-News</h1>
+                <img id='header-logo' src="https://blog.northcoders.com/hubfs/Northcoders%20July2017%20Theme/learn_to_code_manchester_original_second.png" alt='NC-News'/>
             </Link>
         </header>
     );

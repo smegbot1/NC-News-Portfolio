@@ -13,6 +13,10 @@ header h1 {
   margin-left: 20px;
 }
 
+#header-logo {
+  width: 30%;
+}
+
 .commentCard {
   border: 1.5px solid darkgray;
   border-radius: 8px;
