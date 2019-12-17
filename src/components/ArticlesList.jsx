@@ -47,7 +47,7 @@ class ArticlesList extends Component {
         const { isLoading, articles } = this.state;
 
         if (isLoading) return <Loader />
-
+        
         return (
             <div>
                 <ArticlesFilter handleOrder={ this.handleOrder } handleSortBy={this.handleSortBy}/>

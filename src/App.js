@@ -8,16 +8,16 @@ import './App.css';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import ArticlesList from './components/ArticlesList';
-import { fetchTopics } from './utils/api';
 import Loader from './components/Loader';
 import ErrDisplayer from './components/ErrDisplayer';
 import SingleArticle from './components/SingleArticle';
+import { fetchTopics } from './utils/api';
 
 axios.defaults.baseURL = 'https://nc-news-dc.herokuapp.com/api'; 
 
 class App extends Component {
     state = {
-        username: 'jessjelly',
+        username: 'tickle122',
         topics: [],
         isLoading: true,
         snackBarOpen: false,
@@ -43,7 +43,6 @@ class App extends Component {
         this.getTopics();
 
         axios.interceptors.response.use(null, (err) => {
-            console.error(err);
             if (err.response && err.response.data) {
                 this.setState({ snackBarOpen: true, err: err.response.data.msg || 'Unexpected error occured' });
             } else {

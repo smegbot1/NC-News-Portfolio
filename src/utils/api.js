@@ -14,6 +14,6 @@ export const fetchCommentsByArticleId = article_id => axios.get(`/articles/${art
 
 export const removeComment = comment_id => axios.delete(`/comments/${comment_id}`);
 
-export const addComment = (article_id, body) => {
-    return axios.post(`/articles/${article_id}/comments`, { body });
+export const addComment = (article_id, body, username) => {
+    return axios.post(`/articles/${article_id}/comments`, { username, body });
 };

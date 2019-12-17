@@ -36,7 +36,7 @@ class NavBar extends Component {
             {value === index && <Box component='span' m={2}>{children}</Box>}
           </Typography>
         );
-    }
+    };
 
     linkTab = (props) => <Tab
         component="a"

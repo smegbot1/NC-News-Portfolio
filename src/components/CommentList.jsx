@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import CommentCard from './CommentCard';
 import { fetchCommentsByArticleId } from '../utils/api';
 import Loader from './Loader';
-import ErrDisplayer from './ErrDisplayer';
 import NewCommentForm from './NewCommentForm';
 import ViewToggler from './ViewToggler';
 
@@ -21,26 +20,22 @@ class CommentList extends Component {
     getComments = async () => {
         try {
             const { data: { comments } } = await fetchCommentsByArticleId(this.props.article_id);
-            this.setState({ ...this.state, comments, isLoading: false });
+            this.setState({ comments, isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg, isLoading: false });
         };
     };
 
     render() {
-        const { comments, isLoading, err } = this.state;
+        const { comments, isLoading } = this.state;
 
         if (isLoading) return <Loader />
 
-        if (err) return <ErrDisplayer err={err} />
-
         return (
             <section>
-                <ViewToggler text2="Add Comment" text1="Hide">
-                    <NewCommentForm />
+                <ViewToggler close="Add Comment" open="Hide" username={this.props.username}>
+                    <NewCommentForm getComments={this.getComments} article_id={this.props.article_id} username={this.props.username} />
                 </ViewToggler>
-                {/* <CommentCard ........ user={this.props.user} />
-                    --------> (author === props.user) && deleteCommentButton */}
                 {comments.map(comment => <CommentCard key={comment.comment_id} {...comment} username={this.props.username} getComments={this.getComments} />)}
             </section>
         );

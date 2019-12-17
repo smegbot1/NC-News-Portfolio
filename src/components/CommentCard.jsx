@@ -33,9 +33,7 @@ export default class CommentCard extends Component {
 
         return (
             <div className='commentCard'>
-                <div>
-                    {(username === author) && <Button type="button" onClick={this.handleDelete} disabled={this.state.isLoading} variant='outlined' size='small' color="secondary">Delete</Button>}
-                </div>
+                {(username === author) && <Button type="button" onClick={this.handleDelete} disabled={this.state.isLoading} variant='outlined' size='small' color="secondary">Delete</Button>}
                 <h5>{author}</h5>
                 <p>{body}</p>
                 <p><em>made on {created_at}</em> ---- {votes} Votes</p>

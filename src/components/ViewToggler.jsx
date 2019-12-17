@@ -11,12 +11,12 @@ export default class ViewToggler extends Component {
     };
 
     render() {
-        const { children, text1, text2 } = this.props;
+        const { children, open, close } = this.props;
         const { isVisible } = this.state;
 
         return (
             <section>
-                <Button onClick={this.handleClick} variant='text' size='small' color="primary">{isVisible ? text1 : text2}</Button>
+                <Button onClick={this.handleClick} variant='text' size='small' color="primary">{isVisible ? open : close}</Button>
                 {isVisible && children}
             </section>
         );
