@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 
 import { removeComment } from '../utils/api';
 import Loader from './Loader';
+import Voter from './Voter';
 
 export default class CommentCard extends Component {
     state = {
@@ -23,7 +24,7 @@ export default class CommentCard extends Component {
     };
 
     render() {
-        const { author, body, created_at, votes, username } = this.props;
+        const { comment_id, author, body, created_at, votes, username } = this.props;
 
         if (this.state.isLoading) return <Loader />
 
@@ -33,7 +34,7 @@ export default class CommentCard extends Component {
                 <h5>{author}</h5>
                 <p>{body}</p>
                 <p><em>made on {created_at}</em></p>
-                <p>{votes} Votes</p>
+                <Voter type='comments' votes={votes} id={comment_id} />
             </div>
         );
     };
