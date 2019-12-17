@@ -17,3 +17,5 @@ export const removeComment = comment_id => axios.delete(`/comments/${comment_id}
 export const addComment = (article_id, body, username) => {
     return axios.post(`/articles/${article_id}/comments`, { username, body });
 };
+
+export const voteComment = (type, id, inc_votes) => axios.patch(`/${type}/${id}`, { inc_votes });
