@@ -41,10 +41,10 @@ You should implement the following functionality in your website. Check the lect
    - date created <-- Complete
    - comment_count <-- Complete
    - votes <-- Complete
-6. post a new comment to an existing article (as a default logged in user. e.g. 'jessjelly'). <------------ Complete (need help with error handling, ask Daniil)
+6. post a new comment to an existing article (as a default logged in user. e.g. 'jessjelly'). <------------ Complete (need help with error handling and refreshing comments, ask Daniil)
 7. delete my own comments (as a default logged in user. e.g. 'jessjelly').          <------------ Complete
-8. vote on an article and immediately see the change.
-9. vote on a comment and immediately see the change.
+8. vote on an article and immediately see the change.                               <------------ Complete
+9. vote on a comment and immediately see the change.                                <------------ Complete
 
 **As a hiring partner, I should be able to...**
 
@@ -56,7 +56,7 @@ You should implement the following functionality in your website. Check the lect
 
 **Error-handling: As a user, I should...**
 
-15. show a 404 error if I go on a non-existent path/a path for a non-existent article/topic.
+15. show a 404 error if I go on a non-existent path/a path for a non-existent article/topic. <------------ Complete (need to work on snackbar for clearer error handling)
 16. show a 400 error if I go on a invalid article ID.
 17. not be allowed to post a comment if I have not filled in all of the form boxes.
 
@@ -75,6 +75,9 @@ You should implement the following functionality in your website. Check the lect
 - use material ui snackbar for errors and post/delete confirmations.
 - use moment js to format timestamps.
 - link all author occurences to specific user page.
+- replace navbar with bottom navigation buttons.
+- create a proper log in - create new endpoint in BE to get all users and create selection interface in FE to sign in.
+- add a footer.
 
 ## Deployment
 

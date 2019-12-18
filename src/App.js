@@ -13,8 +13,6 @@ import ErrDisplayer from './components/ErrDisplayer';
 import SingleArticle from './components/SingleArticle';
 import { fetchTopics } from './utils/api';
 
-axios.defaults.baseURL = 'https://nc-news-dc.herokuapp.com/api'; 
-
 class App extends Component {
     state = {
         username: 'tickle122',
@@ -69,9 +67,10 @@ class App extends Component {
                     <ErrDisplayer default />
                 </Router>
                 <Snackbar
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                     open={this.state.snackBarOpen}
                     onClose={this.handleClose}
+                    autoHideDuration={5000}
                     message={this.state.err}
                 />
             </div>

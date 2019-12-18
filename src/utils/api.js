@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://nc-news-dc.herokuapp.com/api'; 
+
 export const fetchTopics = () => axios.get('/topics');
 
 export const fetchArticlesByTopic = (topic, order, sort_by) => {

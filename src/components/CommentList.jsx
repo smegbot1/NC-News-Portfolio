@@ -33,7 +33,7 @@ class CommentList extends Component {
 
         return (
             <section>
-                <ViewToggler close="Add Comment" open="Hide" username={this.props.username}>
+                <ViewToggler close="Post Comment" open="Hide" username={this.props.username}>
                     <NewCommentForm getComments={this.getComments} article_id={this.props.article_id} username={this.props.username} />
                 </ViewToggler>
                 {comments.map(comment => <CommentCard key={comment.comment_id} {...comment} username={this.props.username} getComments={this.getComments} />)}

@@ -15,17 +15,17 @@ export default class NewCommentForm extends Component {
     };
 
     handleSubmit = event => {
-        event.preventDefault()
-        this.postComment()
+        event.preventDefault();
+        this.postComment();
+        // this.state.comment === '' ? this.setState({ err: 'Please enter your comment.' }) : this.postComment();
     };
     
     postComment = async () => {
-        if (this.state.comment === '') return this.setState({ err: 'Please enter your comment' });
-        
+        if (this.state.comment === '') Promise.reject({ msg: 'Please enter a comment.' })
+
         try {
             addComment(this.props.article_id, this.state.comment, this.props.username);
-            this.setState({ comment: '' });
-            this.props.getComments();
+            this.setState({ comment: '' }, () => this.props.getComments());
         } catch (err) {
             this.setState({ err: err.msg })
         };
@@ -39,7 +39,7 @@ export default class NewCommentForm extends Component {
                     id="filled-multiline-static"
                     label="Comment"
                     multiline
-                    rows="4"
+                    rows="3"
                     value={this.state.comment}
                     variant="filled"
                     onChange={this.handleChange}
