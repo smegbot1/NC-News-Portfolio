@@ -31,7 +31,7 @@ class App extends Component {
     getTopics = async () => {
         try {
             const { data: { topics } } = await fetchTopics();
-            this.setState({ ...this.state, topics, isLoading: false });
+            this.setState({ topics, isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg, isLoading: false });
         };
