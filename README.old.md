@@ -41,7 +41,7 @@ You should implement the following functionality in your website. Check the lect
    - date created <-- Complete
    - comment_count <-- Complete
    - votes <-- Complete
-6. post a new comment to an existing article (as a default logged in user. e.g. 'jessjelly'). <------------ Complete (need help with error handling and refreshing comments, ask Daniil)
+6. post a new comment to an existing article (as a default logged in user. e.g. 'jessjelly'). <------------ Complete (need help with displaying error in error handler when empty comment is submitted, and refreshing the list of comments)
 7. delete my own comments (as a default logged in user. e.g. 'jessjelly').          <------------ Complete
 8. vote on an article and immediately see the change.                               <------------ Complete
 9. vote on a comment and immediately see the change.                                <------------ Complete

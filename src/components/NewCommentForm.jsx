@@ -16,13 +16,10 @@ export default class NewCommentForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.postComment();
-        // this.state.comment === '' ? this.setState({ err: 'Please enter your comment.' }) : this.postComment();
+        this.state.comment === '' ? alert('Please enter your comment.') : this.postComment();
     };
     
     postComment = async () => {
-        if (this.state.comment === '') Promise.reject({ msg: 'Please enter a comment.' })
-
         try {
             addComment(this.props.article_id, this.state.comment, this.props.username);
             this.setState({ comment: '' }, () => this.props.getComments());
