@@ -1,68 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# DC-News Portfolio Site
 
-## Available Scripts
+This is the front-end visualisation using React and Material UI to host my back-end api from heroku. My objective was to make the website an enjoyable and good looking experience for any account user or passerby.
 
-In the project directory, you can run:
+## Getting Started
+This will be a step-by-step guide to getting a copy of this website onto your local machine to run from. Having said that, I also have a deployed version which you can access [on this site](https://dc-news-portfolio.netlify.com/).
 
-### `npm start`
+### Prerequisites
+When you end up with the project on your local machine through the following steps, you will run a command to install a number of things required for the site to work. They will be installed locally where the project is stored, therefore when you decide to delete the local copy, you will also delete the packages you've downloaded and installed to run the project.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Installing
+To get a local copy and run it as intended, you will need to first open up your terminal/command line. Then, copy and paste the following lines of code into the terminal, entering each time a new line is pasted and waiting for the process to finish.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+`git clone https://github.com/smegbot1/NC-News-Portfolio`
 
-### `npm test`
+`cd /NC-News-Portfolio`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm install`
 
-### `npm run build`
+`npm start`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> NOTE: It is usually a good idea to have your desired browser already open before the last command. Should you run into any problems with 'npm start', try opening your browser first and then running the command.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Following those commands should land you on the homepage of my project, running locally on your machine. Enjoy!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Built With
+- React - The front end library/framework used for this project
+- Material UI - The styling library I used for the components
+- axios - The HTTP client I used to make requests to my hosted api
 
-### `npm run eject`
+> To see my back-end git repo [click here](https://github.com/smegbot1/be-nc-news) or to see the hosted api [click here](https://nc-news-dc.herokuapp.com/api/).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Authors
+- Daniel Cruickshanks
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Copyright
+All rights of ownership are reserved by Northcoders as stipulated by their contract.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Acknowledgements
+- My awesome developer friend that has helped me figure quirks out and drop me some tips and guides on my code. Check him out [here](https://github.com/madltd).
