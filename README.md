@@ -6,18 +6,27 @@ This is the front-end visualisation using React and Material UI to host my back-
 This will be a step-by-step guide to getting a copy of this website onto your local machine to run from. Having said that, I also have a deployed version which you can access [on this site](https://dc-news-portfolio.netlify.com/).
 
 ### Prerequisites
-When you end up with the project on your local machine through the following steps, you will run a command to install a number of things required for the site to work. They will be installed locally where the project is stored, therefore when you decide to delete the local copy, you will also delete the packages you've downloaded and installed to run the project.
+To install this project locally, you will need npm version 6.12.1 and Node.js version 10.15.2 (or higher respectively). npm is installed with Node.js automatically. To check you have Node.js and npm installed, enter the following separate commands in your terminal:
+
+```bash
+node -v
+npm -v
+```
+
+An error stating either node or npm commands have not been found will mean the best option is to [download node.js](https://nodejs.org/en/) directly from their site in order to move forward. Please make sure the above commands show a version number as mentioned earlier or above before moving on to the installation.
 
 ### Installing
 To get a local copy and run it as intended, you will need to first open up your terminal/command line. Then, copy and paste the following lines of code into the terminal, entering each time a new line is pasted and waiting for the process to finish.
 
-`git clone https://github.com/smegbot1/NC-News-Portfolio`
+```bash
+git clone https://github.com/smegbot1/NC-News-Portfolio
 
-`cd /NC-News-Portfolio`
+cd /NC-News-Portfolio
 
-`npm install`
+npm install
 
-`npm start`
+npm start
+```
 
 > NOTE: It is usually a good idea to have your desired browser already open before the last command. Should you run into any problems with 'npm start', try opening your browser first and then running the command.
 

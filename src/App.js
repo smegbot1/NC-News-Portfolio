@@ -11,12 +11,10 @@ import ArticlesList from './components/ArticlesList';
 import Loader from './components/Loader';
 import ErrDisplayer from './components/ErrDisplayer';
 import SingleArticle from './components/SingleArticle';
-import { fetchTopics } from './utils/api';
 
 class App extends Component {
     state = {
         username: 'tickle122',
-        topics: [],
         isLoading: true,
         snackBarOpen: false,
         err: ''
@@ -28,38 +26,27 @@ class App extends Component {
         this.setState({ snackBarOpen: false });
     };
 
-    getTopics = async () => {
-        try {
-            const { data: { topics } } = await fetchTopics();
-            this.setState({ topics, isLoading: false });
-        } catch (err) {
-            this.setState({ err: err.msg, isLoading: false });
-        };
-    };
-
     componentDidMount() {
-        this.getTopics();
-
         axios.interceptors.response.use(null, (err) => {
             if (err.response && err.response.data) {
                 this.setState({ snackBarOpen: true, err: err.response.data.msg || 'Unexpected error occured' });
             } else {
                 this.setState({ snackBarOpen: true, err: 'Unexpected error occured' });
-            }
-
+            };
             return Promise.reject(err);
         });
+        this.setState({ isLoading: false })
     };
 
     render() {
-        const { username, isLoading, topics } = this.state;
+        const { username, isLoading } = this.state;
 
         if (isLoading) return <Loader />
 
         return (
             <div className='App'>
                 <Header username={username} />
-                { topics.length !== 0 && <NavBar topics={topics} /> }
+                <NavBar />
                 <Router>
                     <ArticlesList path='/' />
                     <ArticlesList path=':topic' />

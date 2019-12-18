@@ -7,14 +7,26 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+import { fetchTopics } from '../utils/api';
+
 class NavBar extends Component {
     state = {
         value: 0,
-        topics: []
+        topics: [],
+        err: ''
     };
 
     componentDidMount() {
-        this.setState({ value: 0, topics: this.props.topics })
+        this.getTopics();
+    };
+
+    getTopics = async () => {
+        try {
+            const { data: { topics } } = await fetchTopics();
+            this.setState({ value: 0, topics });
+        } catch (err) {
+            this.setState({ err: err.msg });
+        };
     };
 
     handleChange = (_, value) => {
