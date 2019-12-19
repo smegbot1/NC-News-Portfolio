@@ -51,11 +51,11 @@ export default function ArticlesFilter(props) {
                     <MenuItem value={'comment_count'}>Comments</MenuItem>
                     <MenuItem value={'created_at'}>Date Published</MenuItem>
                 </Select>
+                <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+                    <Button onClick={handleClick}>asc</Button>
+                    <Button onClick={handleClick}>desc</Button>
+                </ButtonGroup>
             </FormControl>
-            <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-                <Button onClick={handleClick}>asc</Button>
-                <Button onClick={handleClick}>desc</Button>
-            </ButtonGroup>
         </div>
     );
 };

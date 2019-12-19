@@ -9,7 +9,9 @@ import ViewToggler from './ViewToggler';
 export default class CommentList extends Component {
     state = {
         comments: [],
-        isLoading: true
+        isLoading: true,
+        page: 1,
+        offset: 0
     };
 
     componentDidMount() {
@@ -18,23 +20,30 @@ export default class CommentList extends Component {
 
     getComments = async () => {
         try {
-            const { data: { comments } } = await fetchCommentsByArticleId(this.props.article_id);
+            const { data: { comments } } = await fetchCommentsByArticleId(this.props.article_id, this.state.offset);
             this.setState({ comments, isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg, isLoading: false });
         };
     };
 
+    handlePage = ({ target: { value } }) => {
+        this.setState(state => ({ ...state, page: state.page + (+value / 10), offset: state.offset + +value }), () => this.getComments());
+    };
+
     render() {
-        if (this.state.isLoading) return <Loader />
+        if (this.state.isLoading) return <Loader />;
 
         return (
             <section>
                 <ViewToggler close="Post Comment" open="Hide" username={this.props.username}>
                     <NewCommentForm getComments={this.getComments} article_id={this.props.article_id} username={this.props.username} />
                 </ViewToggler>
+                <button onClick={this.handlePage} value={-10}>previous</button>
+                {this.state.page}
+                <button onClick={this.handlePage} value={10}>next</button>
                 {this.state.comments.map(comment => <CommentCard key={comment.comment_id} {...comment} username={this.props.username} getComments={this.getComments} />)}
             </section>
         );
-    }
+    };
 };

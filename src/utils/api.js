@@ -8,7 +8,7 @@ export const fetchArticlesByTopic = (topic, order, sort_by, offset) => axios.get
 
 export const fetchSingleArticle = article_id => axios.get(`/articles/${article_id}`);
 
-export const fetchCommentsByArticleId = (article_id, limit, offset) => axios.get(`/articles/${article_id}/comments`, { params: { limit, offset } });
+export const fetchCommentsByArticleId = (article_id, offset) => axios.get(`/articles/${article_id}/comments`, { params: { offset } });
 
 export const removeComment = comment_id => axios.delete(`/comments/${comment_id}`);
 
