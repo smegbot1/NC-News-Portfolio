@@ -10,7 +10,7 @@ import Box from '@material-ui/core/Box';
 import Loader from './Loader';
 import { fetchTopics } from '../utils/api';
 
-class NavBar extends Component {
+export default class NavBar extends Component {
     state = {
         value: 0,
         topics: [],
@@ -89,7 +89,5 @@ class NavBar extends Component {
                 </AppBar>
           </div>
         );
-    }
+    };
 };
-
-export default NavBar;

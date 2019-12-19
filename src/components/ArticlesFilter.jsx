@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ArticlesFilter = props => {
+export default function ArticlesFilter(props) {
     const classes = useStyles();
     const [sort_by, setSortBy] = React.useState('created_at');
 
@@ -59,5 +59,3 @@ const ArticlesFilter = props => {
         </div>
     );
 };
-
-export default ArticlesFilter;

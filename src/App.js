@@ -39,18 +39,16 @@ class App extends Component {
     };
 
     render() {
-        const { username, isLoading } = this.state;
-
-        if (isLoading) return <Loader />
+        if (this.state.isLoading) return <Loader />
 
         return (
             <div className='App'>
-                <Header username={username} />
+                <Header username={this.state.username} />
                 <NavBar />
                 <Router>
                     <ArticlesList path='/' />
                     <ArticlesList path=':topic' />
-                    <SingleArticle path='/articles/:article_id' username={username} />
+                    <SingleArticle path='/articles/:article_id' username={this.state.username} />
                     <ErrDisplayer default />
                 </Router>
                 <Snackbar

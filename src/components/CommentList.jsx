@@ -6,11 +6,10 @@ import Loader from './Loader';
 import NewCommentForm from './NewCommentForm';
 import ViewToggler from './ViewToggler';
 
-class CommentList extends Component {
+export default class CommentList extends Component {
     state = {
         comments: [],
-        isLoading: true,
-        err: ''
+        isLoading: true
     };
 
     componentDidMount() {
@@ -38,6 +37,4 @@ class CommentList extends Component {
             </section>
         );
     }
-}
-
-export default CommentList;
+};

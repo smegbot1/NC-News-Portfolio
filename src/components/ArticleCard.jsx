@@ -5,13 +5,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 
-const ArticleCard = ({ article_id, title, topic, author, created_at, comment_count }) => {
+export default function ArticleCard({ article_id, title, topic, author, created_at, comment_count }) {
     return (
         <Card>
             <CardContent>
-                <Typography color="textSecondary" gutterBottom>
+                <Typography color="textSecondary" variant="h4" gutterBottom>
                     <Link to={`/articles/${article_id}`}>
-                        <h2>{title}</h2>
+                        {title}
                     </Link>
                 </Typography>
                 <Typography variant="h5" component="h2">
@@ -29,5 +29,3 @@ const ArticleCard = ({ article_id, title, topic, author, created_at, comment_cou
         </Card>
     );
 };
-
-export default ArticleCard;

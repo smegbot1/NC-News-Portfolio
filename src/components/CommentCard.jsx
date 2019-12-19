@@ -8,8 +8,7 @@ import Voter from './Voter';
 
 export default class CommentCard extends Component {
     state = {
-        isLoading: false,
-        err: ''
+        isLoading: false
     };
 
     handleDelete = async () => {

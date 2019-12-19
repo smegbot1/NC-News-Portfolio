@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ErrDisplayer = ({ err }) => {
+export default function ErrDisplayer({ err }) {
     const msg = err ? err : 'Oops! Page not found...';
 
     return (
@@ -9,5 +9,3 @@ const ErrDisplayer = ({ err }) => {
         </h5>
     );
 };
-
-export default ErrDisplayer;

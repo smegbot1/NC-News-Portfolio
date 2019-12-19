@@ -5,13 +5,12 @@ import ArticleCard from './ArticleCard';
 import ArticlesFilter from './ArticlesFilter';
 import { fetchArticlesByTopic } from '../utils/api';
 
-class ArticlesList extends Component {
+export default class ArticlesList extends Component {
     state = {
         articles: [],
         order: '',
         sort_by: '',
-        isLoading: false,
-        err: ''
+        isLoading: false
     };
 
     componentDidMount() {
@@ -25,10 +24,8 @@ class ArticlesList extends Component {
     };
 
     getArticlesByTopic = async () => {
-        const { order, sort_by } = this.state;
-
         try {
-            const { data: { articles } } = await fetchArticlesByTopic(this.props.topic, order, sort_by);
+            const { data: { articles } } = await fetchArticlesByTopic(this.props.topic, this.state.order, this.state.sort_by);
             this.setState({ articles, isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg, isLoading: false });            
@@ -44,17 +41,13 @@ class ArticlesList extends Component {
     };
 
     render() {
-        const { isLoading, articles } = this.state;
-
-        if (isLoading) return <Loader />
+        if (this.state.isLoading) return <Loader />;
         
         return (
             <div>
                 <ArticlesFilter handleOrder={ this.handleOrder } handleSortBy={this.handleSortBy}/>
-                {articles.map((article, i) => <ArticleCard key={i} {...article} />)}
+                {this.state.articles.map((article, i) => <ArticleCard key={i} {...article} />)}
             </div>
         );
     };
 };
-
-export default ArticlesList;

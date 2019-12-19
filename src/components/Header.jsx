@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-const Header = ({ username }) => {
+export default function Header({ username }) {
     return (
         <header>
             <p>(User): {username}</p>
@@ -11,5 +11,3 @@ const Header = ({ username }) => {
         </header>
     );
 };
-
-export default Header;
