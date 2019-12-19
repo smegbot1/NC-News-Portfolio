@@ -28,7 +28,7 @@ export default class SingleArticle extends Component {
     render() {
         const { article: { article_id, title, author, created_at, body, votes }, isLoading } = this.state;
 
-        if (isLoading) return <Loader />
+        if (isLoading || !title) return <Loader />
 
         return (
             <main>
