@@ -11,7 +11,8 @@ export default class ArticlesList extends Component {
         order: '',
         sort_by: '',
         isLoading: false,
-        offset: 0
+        offset: 0,
+        page: 1
     };
 
     componentDidMount() {
@@ -42,7 +43,7 @@ export default class ArticlesList extends Component {
     };
 
     handlePage = ({ target: { value } }) => {
-        this.setState(state => ({ ...state, offset: state.offset + +value }), () => this.getArticlesByTopic());
+        this.setState(state => ({ ...state, page: state.page + (+value / 10), offset: state.offset + +value }), () => this.getArticlesByTopic());
     };
 
     render() {
@@ -51,6 +52,7 @@ export default class ArticlesList extends Component {
         return (
             <div>
                 <button onClick={this.handlePage} value={-10}>previous page</button>
+                {this.state.page}
                 <button onClick={this.handlePage} value={10}>next page</button>
                 <ArticlesFilter handleOrder={ this.handleOrder } handleSortBy={this.handleSortBy}/>
                 {this.state.articles.map((article, i) => <ArticleCard key={i} {...article} />)}

@@ -32,7 +32,7 @@ export default class Voter extends Component {
             <IconButton value={1} onClick={this.handleClick.bind(this)} disabled={optimisticVotes > 0} color="secondary" >
                 <ExpandLessIcon />
             </IconButton>
-            <h5>{this.props.votes + optimisticVotes}</h5>
+            {this.props.votes + optimisticVotes}
             <IconButton value={-1} onClick={this.handleClick.bind(this)} disabled={optimisticVotes < 0} color="primary" >
                 <ExpandMoreIcon name={-1} />
             </IconButton>
