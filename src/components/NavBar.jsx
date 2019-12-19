@@ -7,13 +7,15 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+import Loader from './Loader';
 import { fetchTopics } from '../utils/api';
 
 class NavBar extends Component {
     state = {
         value: 0,
         topics: [],
-        err: ''
+        err: '',
+        isLoading: true
     };
 
     componentDidMount() {
@@ -23,14 +25,14 @@ class NavBar extends Component {
     getTopics = async () => {
         try {
             const { data: { topics } } = await fetchTopics();
-            this.setState({ value: 0, topics });
+            this.setState({ value: 0, topics, isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg });
         };
     };
 
     handleChange = (_, value) => {
-        this.setState({ value })
+        this.setState({ value, isLoading: false })
     };
 
     TabPanel = () => {
@@ -62,7 +64,7 @@ class NavBar extends Component {
     a11yProps = (index) => ({ id: `nav-tab-${index}`, 'aria-controls': `nav-tabpanel-${index}`, })
 
     render() {
-        const { value, topics } = this.state;
+        const { value, topics, isLoading } = this.state;
         const { a11yProps, TabPanel, linkTab, handleChange } = this;
 
         TabPanel.propTypes = {
@@ -70,6 +72,9 @@ class NavBar extends Component {
             index: PropTypes.any.isRequired,
             value: PropTypes.any.isRequired,
         };
+
+        if (isLoading) return <Loader/>
+
         return (
             <div>
                 <AppBar position="static">
