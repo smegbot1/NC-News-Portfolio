@@ -3,6 +3,7 @@ import { Link } from '@reach/router';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
 
 const ArticleCard = ({ article_id, title, topic, author, created_at, comment_count }) => {
     return (
@@ -20,7 +21,7 @@ const ArticleCard = ({ article_id, title, topic, author, created_at, comment_cou
                 {topic}
                 </Typography>
                 <Typography variant="body2" component="p">
-                Date: {created_at}
+                Published on {moment(created_at).format("MMM Do YY")}
                 <br />
                 {comment_count} Comments
                 </Typography>

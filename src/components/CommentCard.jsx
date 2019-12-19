@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
+import moment from 'moment';
 
 import { removeComment } from '../utils/api';
 import Loader from './Loader';
@@ -33,7 +34,7 @@ export default class CommentCard extends Component {
                 {(username === author) && <Button type="button" onClick={this.handleDelete} disabled={this.state.isLoading} variant='outlined' size='small' color="secondary">Delete</Button>}
                 <h5>{author}</h5>
                 <p>{body}</p>
-                <p><em>made on {created_at}</em></p>
+                <p><em>posted {moment(created_at, "YYYYMMDD").fromNow()}</em></p>
                 <Voter type='comments' votes={votes} id={comment_id} />
             </div>
         );
