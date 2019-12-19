@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 import { fetchSingleArticle } from '../utils/api';
 import Loader from './Loader';
@@ -33,7 +34,7 @@ export default class SingleArticle extends Component {
         return (
             <main>
                 <h2>{title}</h2>
-                <h4>By <em>{author}</em> on {created_at}</h4>
+                <h4>By <em>{author}</em> on {moment(created_at).format("MMM Do YY")}</h4>
                 <p>{body}</p>
                 <Voter votes={votes} type="articles" id={article_id} />
                 <hr/>

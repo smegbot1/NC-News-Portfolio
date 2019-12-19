@@ -10,7 +10,8 @@ export default class ArticlesList extends Component {
         articles: [],
         order: '',
         sort_by: '',
-        isLoading: false
+        isLoading: false,
+        offset: 0
     };
 
     componentDidMount() {
@@ -25,7 +26,7 @@ export default class ArticlesList extends Component {
 
     getArticlesByTopic = async () => {
         try {
-            const { data: { articles } } = await fetchArticlesByTopic(this.props.topic, this.state.order, this.state.sort_by);
+            const { data: { articles } } = await fetchArticlesByTopic(this.props.topic, this.state.order, this.state.sort_by, this.state.offset);
             this.setState({ articles, isLoading: false });
         } catch (err) {
             this.setState({ err: err.msg, isLoading: false });            
@@ -40,11 +41,17 @@ export default class ArticlesList extends Component {
         this.setState({ sort_by });
     };
 
+    handlePage = ({ target: { value } }) => {
+        this.setState(state => ({ ...state, offset: state.offset + +value }), () => this.getArticlesByTopic());
+    };
+
     render() {
         if (this.state.isLoading) return <Loader />;
         
         return (
             <div>
+                <button onClick={this.handlePage} value={-10}>previous page</button>
+                <button onClick={this.handlePage} value={10}>next page</button>
                 <ArticlesFilter handleOrder={ this.handleOrder } handleSortBy={this.handleSortBy}/>
                 {this.state.articles.map((article, i) => <ArticleCard key={i} {...article} />)}
             </div>
