@@ -26,7 +26,7 @@ export default class NewCommentForm extends Component {
     
     postComment = async () => {
         try {
-            addComment(this.props.article_id, this.state.comment, this.props.username);
+            await addComment(this.props.article_id, this.state.comment, this.props.username);
             this.setState({ snackBarOpen: true, snack: 'Comment posted!', comment: '' }, () => this.props.getComments());
         } catch (err) {
             this.setState({ err: err.msg })
