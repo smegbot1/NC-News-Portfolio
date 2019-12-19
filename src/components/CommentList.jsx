@@ -27,16 +27,14 @@ class CommentList extends Component {
     };
 
     render() {
-        const { comments, isLoading } = this.state;
-
-        if (isLoading) return <Loader />
+        if (this.state.isLoading) return <Loader />
 
         return (
             <section>
                 <ViewToggler close="Post Comment" open="Hide" username={this.props.username}>
                     <NewCommentForm getComments={this.getComments} article_id={this.props.article_id} username={this.props.username} />
                 </ViewToggler>
-                {comments.map(comment => <CommentCard key={comment.comment_id} {...comment} username={this.props.username} getComments={this.getComments} />)}
+                {this.state.comments.map(comment => <CommentCard key={comment.comment_id} {...comment} username={this.props.username} getComments={this.getComments} />)}
             </section>
         );
     }
