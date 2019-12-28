@@ -5,6 +5,7 @@ import { fetchCommentsByArticleId } from '../utils/api';
 import Loader from './Loader';
 import NewCommentForm from './NewCommentForm';
 import ViewToggler from './ViewToggler';
+import PageNav from './PageNav';
 
 export default class CommentList extends Component {
     state = {
@@ -39,9 +40,7 @@ export default class CommentList extends Component {
                 <ViewToggler close="Post Comment" open="Hide" username={this.props.username}>
                     <NewCommentForm getComments={this.getComments} article_id={this.props.article_id} username={this.props.username} />
                 </ViewToggler>
-                <button onClick={this.handlePage} value={-10}>previous</button>
-                {this.state.page}
-                <button onClick={this.handlePage} value={10}>next</button>
+                <PageNav page={this.state.page} handlePage={this.handlePage} next={10} previous={-10} />
                 {this.state.comments.map(comment => <CommentCard key={comment.comment_id} {...comment} username={this.props.username} getComments={this.getComments} />)}
             </section>
         );
