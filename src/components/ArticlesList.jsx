@@ -4,6 +4,7 @@ import Loader from './Loader';
 import ArticleCard from './ArticleCard';
 import ArticlesFilter from './ArticlesFilter';
 import { fetchArticlesByTopic } from '../utils/api';
+import PageNav from './PageNav';
 
 export default class ArticlesList extends Component {
     state = {
@@ -51,9 +52,7 @@ export default class ArticlesList extends Component {
         
         return (
             <div>
-                <button onClick={this.handlePage} value={-5}>previous page</button>
-                {this.state.page}
-                <button onClick={this.handlePage} value={5}>next page</button>
+                <PageNav page={this.state.page} handlePage={this.handlePage} next={5} previous={-5} />
                 <ArticlesFilter handleOrder={ this.handleOrder } handleSortBy={this.handleSortBy}/>
                 {this.state.articles.map((article, i) => <ArticleCard key={i} {...article} />)}
             </div>
