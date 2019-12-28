@@ -39,16 +39,16 @@ export default class NavBar extends Component {
         const { children, value, index, ...other } = this.props;
 
         return (
-          <Typography
-            component="div"
-            role="tabpanel"
-            hidden={value !== index}
-            id={`nav-tabpanel-${index}`}
-            aria-labelledby={`nav-tab-${index}`}
-            {...other}
-          >
-            {value === index && <Box component='span' m={2}>{children}</Box>}
-          </Typography>
+            <Typography
+                component="div"
+                role="tabpanel"
+                hidden={value !== index}
+                id={`nav-tabpanel-${index}`}
+                aria-labelledby={`nav-tab-${index}`}
+                {...other}
+            >
+                {value === index && <Box component='span' m={2}>{children}</Box>}
+            </Typography>
         );
     };
 
@@ -73,7 +73,7 @@ export default class NavBar extends Component {
             value: PropTypes.any.isRequired,
         };
 
-        if (isLoading) return <Loader/>
+        if (isLoading) return <Loader />
 
         return (
             <div>
@@ -83,11 +83,11 @@ export default class NavBar extends Component {
                         value={value}
                         onChange={handleChange}
                     >
-                        {linkTab({ href:'/', label: 'All Articles', ...a11yProps(0) })}
+                        {linkTab({ href: '/', label: 'All Articles', ...a11yProps(0) })}
                         {topics.map(({ slug }, i) => linkTab({ key: i, href: `/${slug}`, label: slug, ...a11yProps(i + 1) }))}
                     </Tabs>
                 </AppBar>
-          </div>
+            </div>
         );
     };
 };

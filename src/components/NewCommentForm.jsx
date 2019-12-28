@@ -19,9 +19,9 @@ export default class NewCommentForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.state.comment === '' ?
-            this.setState({ snackBarOpen: true, snack: 'Please enter your comment.' }) : 
-            this.postComment();
+
+        if (!this.state.comment) this.setState({ snackBarOpen: true, snack: 'Please enter your comment.' });
+        else this.postComment();
     };
     
     postComment = async () => {
@@ -44,14 +44,14 @@ export default class NewCommentForm extends Component {
             <form noValidate autoComplete="off">
                 <div>
                     <TextField
-                    id="filled-multiline-static"
-                    label="Comment"
-                    multiline
-                    rows="3"
-                    value={this.state.comment}
-                    variant="filled"
-                    onChange={this.handleChange}
-                    required
+                        id="filled-multiline-static"
+                        label="Comment"
+                        multiline
+                        rows="3"
+                        value={this.state.comment}
+                        variant="filled"
+                        onChange={this.handleChange}
+                        required
                     />
                 </div>
                 <Button onClick={this.handleSubmit} variant='text' size='small' color="primary">Post</Button>

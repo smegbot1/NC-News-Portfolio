@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 
-export default function ArticleCard({ article_id, title, topic, author, created_at, comment_count }) {
+export default ({ article_id, title, topic, author, created_at, comment_count }) => {
     return (
         <Card>
             <CardContent>
@@ -15,15 +15,15 @@ export default function ArticleCard({ article_id, title, topic, author, created_
                     </Link>
                 </Typography>
                 <Typography variant="h5" component="h2">
-                By {author}
+                    By {author}
                 </Typography>
                 <Typography color="textSecondary">
-                {topic}
+                    {topic}
                 </Typography>
                 <Typography variant="body2" component="p">
-                Published on {moment(created_at).format("MMM Do YY")}
-                <br />
-                {comment_count} Comments
+                    Published on {moment(created_at).format("MMM Do YY")}
+                    <br />
+                    {comment_count} Comments
                 </Typography>
             </CardContent>
         </Card>
