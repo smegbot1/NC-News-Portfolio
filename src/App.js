@@ -12,7 +12,7 @@ import Loader from './components/Loader';
 import ErrDisplayer from './components/ErrDisplayer';
 import SingleArticle from './components/SingleArticle';
 
-class App extends Component {
+export default class App extends Component {
     state = {
         username: 'tickle122',
         isLoading: true,
@@ -62,5 +62,3 @@ class App extends Component {
         );
     };
 };
-
-export default App;

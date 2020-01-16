@@ -47,7 +47,7 @@ export default class ArticlesList extends Component {
 
         return (
             <div>
-                <PageNav total={this.state.article_count} refresh={this.getArticlesByTopic} size={5} />
+                <PageNav total={this.state.article_count} items={this.props.topic} refresh={this.getArticlesByTopic} size={5} />
                 <ArticlesFilter handleOrder={this.handleOrder} handleSortBy={this.handleSortBy}/>
                 {this.state.articles.map((article, i) => <ArticleCard key={i} {...article} />)}
             </div>

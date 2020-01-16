@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 export default class PageNav extends Component {
     state = {
         page: 0,
-        lastPage: 0
+        lastPage: 0,
+        items: ''
     };
 
     componentDidUpdate(prevProps) {
         if (prevProps.total !== this.props.total) this.setState({ lastPage: Math.floor(this.props.total / this.props.size) });
+        if (prevProps.items !== this.props.items) this.setState({ items: this.props.items, page: 0 });
     };
 
     handlePage = (page) => {
