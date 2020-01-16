@@ -7,8 +7,8 @@ export default class PageNav extends Component {
     };
 
     componentDidUpdate(prevProps) {
-        if (prevProps.total !== this.props.total) this.setState({ lastPage: Math.ceil(this.props.total / this.props.size) });
-    }
+        if (prevProps.total !== this.props.total) this.setState({ lastPage: Math.floor(this.props.total / this.props.size) });
+    };
 
     handlePage = (page) => {
         if ((this.state.page === 0 && page < 0) || (this.state.page === this.state.lastPage && page > 0)) return;
@@ -17,7 +17,6 @@ export default class PageNav extends Component {
     };
 
     render() {
-
         return <div>
             <button onClick={() => this.handlePage(-1)}>Previous</button>
                 {this.state.page + 1}
